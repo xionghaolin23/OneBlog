@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zyd.blog.persistence.mapper.FollowUserMapper">
+	<resultMap id="rm" type="com.zyd.blog.persistence.beans.BizFollowUser">
+		<result property="id" jdbcType="BIGINT" column="id"/>
+		<result property="userId" jdbcType="VARCHAR" column="user_id"/>
+		<result property="followUserId" jdbcType="VARCHAR" column="follow_user_id"/>
+	</resultMap>
+
+	<select id="findPageBreakByCondition" parameterType="com.zyd.blog.business.vo.FollowUserConditionVO" resultMap="rm">
+		SELECT
+			s.*
+		FROM
+		biz_follow_user s
+		WHERE
+			1 = 1
+
+	</select>
+
+	<select id="findPageByUserIdAndFollowingUserId" parameterType="string" resultMap="rm">
+		SELECT
+			s.*
+		FROM
+			biz_follow_user s
+		WHERE
+			1 = 1 AND user_id = ${userId} AND follow_user_id = ${followingUserId}
+
+	</select>
+
+	<select id="findPageByUserId" parameterType="string" resultMap="rm">
+		SELECT
+			s.*
+		FROM
+			biz_follow_user s
+		WHERE
+			1 = 1 AND user_id = ${userId}
+
+	</select>
+
+
+
+
+
+</mapper>
+

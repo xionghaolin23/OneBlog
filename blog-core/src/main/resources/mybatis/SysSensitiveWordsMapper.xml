@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.zyd.blog.persistence.mapper.SysSensitiveWordsMapper">
+	<resultMap id="rm" type="com.zyd.blog.persistence.beans.SysSensitiveWords">
+		<result property="id" jdbcType="BIGINT" column="id"/>
+		<result property="value" jdbcType="VARCHAR" column="value"/>
+	</resultMap>
+
+	<select id="findPageBreakByCondition" parameterType="com.zyd.blog.business.vo.SensitiveWordsConditionVO" resultMap="rm">
+		SELECT
+			s.*
+		FROM
+		sys_sensitive_words s
+		WHERE
+			1 = 1
+		<if test="keywords != null and keywords != '' ">
+			AND
+			(
+			s.value LIKE CONCAT('%',#{keywords , jdbcType=VARCHAR},'%')
+			)
+		</if>
+	</select>
+
+	<select id="getByValue" parameterType="string" resultMap="rm">
+		SELECT
+		s.*
+		FROM
+		sys_sensitive_words s
+		WHERE
+		1 = 1
+		<if test="value != null and value != '' ">
+			AND
+			(
+			s.value =#{value}
+			)
+		</if>
+	</select>
+
+
+
+</mapper>
+
