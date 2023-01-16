@@ -11,6 +11,7 @@ import com.zyd.blog.business.enums.FileUploadType;
 import com.zyd.blog.business.enums.ResponseStatus;
 import com.zyd.blog.business.service.BizArticleService;
 import com.zyd.blog.business.service.BizArticleTagsService;
+import com.zyd.blog.business.service.SysSensitiveWordsService;
 import com.zyd.blog.business.vo.ArticleConditionVO;
 import com.zyd.blog.file.FileUploader;
 import com.zyd.blog.file.entity.VirtualFile;
@@ -32,6 +33,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import tk.mybatis.mapper.entity.Example;
 
@@ -45,7 +47,7 @@ import java.util.stream.Collectors;
  * @author yadong.zhang (yadong.zhang0415(a)gmail.com)
  * @version 1.0
  * @website https://docs.zhyd.me
- *  2018/4/16 16:26
+ * 2018/4/16 16:26
  * @since 1.0
  */
 @Slf4j
@@ -67,7 +69,10 @@ public class BizArticleServiceImpl implements BizArticleService {
     @Autowired
     private BizCommentMapper commentMapper;
 
-    private static final List<Long> USER_IDS =Arrays.asList(1L,2L,3L);
+    @Autowired
+    private SysSensitiveWordsService sysSensitiveWordsService;
+
+    private static final List<Long> USER_IDS = Arrays.asList(1L, 2L, 3L);
 
     /**
      * 分页查询
@@ -133,12 +138,12 @@ public class BizArticleServiceImpl implements BizArticleService {
             }
             this.subquery(bizArticle);
             article = new Article(bizArticle);
-           if(USER_IDS.contains(userId)){
+            if (USER_IDS.contains(userId)) {
                 boList.add(article);
-            }else if(userId == article.getUserId()){
-               article.setPassword(null);
-               boList.add(article);
-           }
+            } else if (userId == article.getUserId()) {
+                article.setPassword(null);
+                boList.add(article);
+            }
         }
         PageInfo bean = new PageInfo<BizArticle>(list);
         bean.setList(boList);
@@ -297,6 +302,15 @@ public class BizArticleServiceImpl implements BizArticleService {
     public boolean publish(Article article, Long[] tags, MultipartFile file) {
         if (null == tags || tags.length <= 0) {
             throw new ZhydArticleException("请至少选择一个标签");
+        }
+        if (article != null && article.getBizArticle() != null) {
+            BizArticle bizArticle = article.getBizArticle();
+            if (!StringUtils.isEmpty(bizArticle.getContent())) {
+                Set<String> set = sysSensitiveWordsService.sensitiveWordFiltering(bizArticle.getContent());
+                if (!CollectionUtils.isEmpty(set)) {
+                    throw new ZhydArticleException("包含敏感词，请修改！" + set.toString());
+                }
+            }
         }
         if (null != file) {
             FileUploader uploader = new GlobalFileUploader();

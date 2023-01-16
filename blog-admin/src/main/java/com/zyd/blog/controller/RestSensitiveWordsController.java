@@ -19,14 +19,12 @@ import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Set;
 
 /**
  * 敏感管理
- *
  */
 @RestController
 @RequestMapping("/sensitiveWords")
@@ -88,6 +86,25 @@ public class RestSensitiveWordsController {
     @BussinessLog("获取敏感词")
     public ResponseVO get(@PathVariable Long id) {
         return ResultUtil.success(null, this.sysSensitiveWordsService.getByPrimaryKey(id));
+    }
+
+
+    /**
+     * 敏感词过滤
+     *
+     * @param text
+     * @return
+     */
+    @GetMapping(value = "/word/filter")
+    public ResponseVO sensitiveWordFiltering(String text) throws Exception {
+        text = "<p>敏感词</p>";
+        try {
+            Set<String> set = sysSensitiveWordsService.sensitiveWordFiltering(text);
+            return ResultUtil.success(set);
+        } catch (Exception e) {
+            throw new Exception("过滤敏感词出错，请联系维护人员");
+        }
+
     }
 
 

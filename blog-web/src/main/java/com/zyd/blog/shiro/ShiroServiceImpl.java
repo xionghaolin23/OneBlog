@@ -59,6 +59,7 @@ public class ShiroServiceImpl implements ShiroService {
         filterChainDefinitionMap.put("/type/**", "anon");
         filterChainDefinitionMap.put("/about/**", "anon");
         filterChainDefinitionMap.put("/links/**", "anon");
+        filterChainDefinitionMap.put("/api/**", "anon");
         filterChainDefinitionMap.put("/user/register", "anon");
         filterChainDefinitionMap.put("/user/signin", "anon");
         filterChainDefinitionMap.put("/websocket", "anon");

@@ -11,6 +11,7 @@ import com.zyd.blog.framework.object.AbstractService;
 import com.zyd.blog.persistence.beans.SysSensitiveWords;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * 用户
@@ -38,6 +39,13 @@ public interface SysSensitiveWordsService extends AbstractService<SysSensitiveWo
      * @return
      */
     SensitiveWords getByValue(String value);
+
+    /**
+     * 敏感词过滤
+     * @param text 前端传入的文本
+     * @return
+     */
+    Set<String> sensitiveWordFiltering(String text);
 
 
 
