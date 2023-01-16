@@ -42,11 +42,11 @@
                                     <i class="fa fa-bullhorn fa-fw"></i>
                                 </button>
                             </@shiro.hasPermission>
-                            <@shiro.hasPermission name="article:batchPush">
+                           <#-- <@shiro.hasPermission name="article:batchPush">
                                 <button id="btn_push_ids" type="button" class="btn btn-info" title="批量推送到百度">
                                     <i class="fa fa-send-o fa-fw"></i>
                                 </button>
-                            </@shiro.hasPermission>
+                            </@shiro.hasPermission>-->
                         </div>
                         <table id="tablelist">
                         </table>
@@ -70,7 +70,7 @@
         // var recommended = row.recommended ? '<i class="fa fa-thumbs-o-down"></i>取消推荐' : '<i class="fa fa-thumbs-o-up"></i>推荐';
         // var top = row.top ? '<i class="fa fa-arrow-circle-down"></i>取消置顶' : '<i class="fa fa-arrow-circle-up"></i>置顶';
         var operateBtn = [
-            '<@shiro.hasPermission name="article:push"><a class="btn btn-sm btn-info btn-push" title="推送" data-id="' + trId + '"><i class="fa fa-send-o"></i></a></@shiro.hasPermission>',
+            /*'<@shiro.hasPermission name="article:push"><a class="btn btn-sm btn-info btn-push" title="推送" data-id="' + trId + '"><i class="fa fa-send-o"></i></a></@shiro.hasPermission>',*/
             '<@shiro.hasPermission name="article:edit"><a class="btn btn-sm btn-success" href="/article/update/' + trId + '"><i class="fa fa-edit fa-fw"></i></a></@shiro.hasPermission>',
             '<@shiro.hasPermission name="article:delete"><a class="btn btn-sm btn-danger btn-remove" data-id="' + trId + '"><i class="fa fa-trash-o fa-fw"></i></a></@shiro.hasPermission>',
             <#--'<@shiro.hasPermission name="article:top"><a class="btn btn-sm btn-success btn-top" data-id="' + trId + '">' + top + '</a></@shiro.hasPermission>',-->
