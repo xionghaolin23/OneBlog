@@ -11,8 +11,6 @@
         <module>blog-core</module>
         <module>blog-web</module>
         <module>blog-admin</module>
-        <module>blog-file</module>
-        <module>blog-codegen</module>
     </modules>
 
     <name>blog</name>
