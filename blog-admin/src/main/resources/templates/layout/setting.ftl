@@ -15,7 +15,8 @@
                         <li><a data-toggle="modal" title="修改密码" data-target="#updPasswordModal">修改密码</a></li>
                         <@shiro.hasRole name="role:root">
                         <li>
-                            <a href="/config">
+<#--                            <a href="/config">-->
+                            <a href="/">
                                 <span>系统配置</span>
                             </a>
                         </li>

@@ -123,7 +123,7 @@
                         <div id="" class="tab-content">
                             <div role="tabpanel" class="tab-pane fade active in" id="article" aria-labelledby="article-tab">
                                 <div class="row">
-                                    <div class="col col-md-3">
+                                    <#--<div class="col col-md-3">
                                         <div class="item form-group">
                                             <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div class="choose-local-img" style="text-align: center;">
@@ -143,7 +143,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div>-->
                                     <div class="col col-md-9">
                                         <div class="item form-group">
                                             <label class="control-label col-md-2 col-sm-2 col-xs-12" for="nickname">分类 <span class="required">*</span></label>
