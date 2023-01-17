@@ -87,9 +87,6 @@
                     </ul>
                 </div>
                 <div id="qrcode-container" align="center" style="margin-top: 10px;"></div>
-                <div style="width: 100%;color: #a3a3a3;font-size: 16px;font-family: 'Microsoft YaHei';text-align: center;">
-                    转账时请备注“<strong>博客赞助</strong>”
-                </div>
             </div>
         </div>
         <small class="font-bold"></small>
@@ -107,51 +104,16 @@
         ${config.footerHtml!}
     <#else >
         <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col col-xs-12 col-md-12 col-lg-12">
-                        <p>
-                        <ul class="list-unstyled list-inline">
-                            <li>其他连接：</li>
-                            <li><a href="${config.siteUrl}/sitemap.html" target="_blank" title="网站地图" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-map-o fa-fw"></i>网站地图</a></li>
-                            <li><a href="${config.siteUrl}/recommended" title="站长推荐" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-thumbs-o-up fa-fw"></i>站长推荐</a></li>
-                            <li><a href="${config.siteUrl}/updateLog" title="更新记录" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-file-o fa-fw"></i>更新记录</a></li>
-                            <li><a href="${config.siteUrl}/archives" title="归档目录" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-folder-o fa-fw"></i>归档目录</a></li>
-                            <li><a href="${config.siteUrl}/disclaimer" title="免责声明" data-toggle="tooltip" data-placement="bottom"><i class="fa fa-file-o fa-fw"></i>免责声明</a></li>
-                        </ul>
-                        </p>
-                        <p>托管于<a href="https://promotion.aliyun.com/ntms/act/ambassador/sharetouser.html?userCode=wylo59db" target="_blank" title="阿里云-为了无法计算的价值" data-toggle="tooltip" data-placement="bottom" rel="external nofollow">阿里云</a> & <a href="https://portal.qiniu.com/signup?code=3l8yx2v0f21ci" target="_blank" title="七牛云-国内领先的企业级云服务商" data-toggle="tooltip" data-placement="bottom" rel="external nofollow">七牛云</a><#if config.recordNumber!> · <a href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank" title="查看备案信息" data-toggle="tooltip" data-placement="bottom" rel="external nofollow">${config.recordNumber}</a></#if></p>
-                    </div>
-                    <div class="col col-md-4"></div>
-                </div>
-            </div>
+
         </footer>
     </#if>
     <footer class="footer">
         <div class="container">
             <div class="row">
                 <div class="col col-xs-12 col-md-12 col-lg-12">
-                    <p><#if config.copyright!>${config.copyright} |</#if> Powered by <a href="https://gitee.com/yadong.zhang/DBlog" title="OneBlog是一款简洁美观、自适应的Java博客系统..." data-toggle="tooltip" data-placement="right" target="_blank" style="color: #4286ca;font-weight: 600;">OneBlog ${appInfo.version!}</a>  </p>
+                    <p><#if config.copyright!>${config.copyright} |</#if> Powered by <a href="/" title="OneBlog是一款简洁美观、自适应的Java博客系统..." data-toggle="tooltip" data-placement="right" target="_blank" style="color: #4286ca;font-weight: 600;">OneBlog ${appInfo.version!}</a>  </p>
                     <#if url?? && (url == "index")>
-                        <div class="inline external-links">
-                            <a>友情链接：</a>
-                            <a href="https://justauth.wiki" target="_blank" title="开箱即用的整合第三方登录的开源组件" data-toggle="tooltip" data-placement="right">
-                                JustAuth
-                            </a>
-                            <a href="https://justauth.plus" target="_blank" title="一款开源的登录认证中间件，支持 Form、 OAuth2.0、OIDC、Http Basic、Digest、Bearer、LDAP、SAML、MFA、SSO 等" data-toggle="tooltip" data-placement="right">
-                                JAP
-                            </a>
-                            <#if indexLinkList?? && (indexLinkList?size > 0)>
-                                <#list indexLinkList as item>
-                                    <a href="${item.url}" target="_blank" title="${item.description!}" data-toggle="tooltip" data-placement="right">
-                                        ${item.name!}
-                                    </a>
-                                </#list>
-                                <a href="${config.siteUrl}/links" title="更多链接" data-toggle="tooltip" data-placement="right"><i class="fa fa-plus"></i>更多链接</a>
-                            <#else>
-                                <a href="${config.siteUrl}/links" title="申请友链" data-toggle="tooltip" data-placement="right">申请友链</a>
-                            </#if>
-                        </div>
+
                     </#if>
 
                 </div>
