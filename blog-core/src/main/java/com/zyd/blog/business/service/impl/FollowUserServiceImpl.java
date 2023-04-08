@@ -15,6 +15,7 @@ import com.zyd.blog.persistence.beans.SysUser;
 import com.zyd.blog.persistence.mapper.FollowUserMapper;
 import com.zyd.blog.persistence.mapper.SysSensitiveWordsMapper;
 import com.zyd.blog.persistence.mapper.SysUserMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -76,7 +77,11 @@ public class FollowUserServiceImpl implements FollowUserService {
                 i->{
                     SysUser sysUser = sysUserMapper.selectByPrimaryKey(i.getFollowUserId());
                     FollowUserVO vo = new FollowUserVO();
-                    vo.setNickname(sysUser.getNickname());
+                    if(StringUtils.isBlank(sysUser.getNickname())){
+                        vo.setNickname(sysUser.getUsername());
+                    }else{
+                        vo.setNickname(sysUser.getNickname());
+                    }
                     followUserList.add(vo);
                 }
         );

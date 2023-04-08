@@ -16,7 +16,6 @@ import javax.validation.constraints.NotNull;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class UserPwd {
-    @NotNull(message = "用户ID不可为空")
     private Long id;
     @NotNull(message = "原密码不可为空")
     private String password;

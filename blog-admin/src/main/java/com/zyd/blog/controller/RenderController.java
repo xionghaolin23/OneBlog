@@ -7,19 +7,29 @@ package com.zyd.blog.controller;
 
 import com.zyd.blog.business.annotation.BussinessLog;
 import com.zyd.blog.business.entity.Article;
+import com.zyd.blog.business.entity.User;
 import com.zyd.blog.business.enums.AdPositionEnum;
 import com.zyd.blog.business.enums.AdTypeEnum;
+import com.zyd.blog.business.enums.UserTypeEnum;
 import com.zyd.blog.business.service.BizArticleService;
+import com.zyd.blog.business.service.SysUserService;
 import com.zyd.blog.core.BlogHunterConfigProvider;
 import com.zyd.blog.core.websocket.server.ZydWebsocketServer;
 import com.zyd.blog.framework.exception.ZhydException;
+import com.zyd.blog.framework.holder.RequestHolder;
+import com.zyd.blog.util.PasswordUtil;
 import com.zyd.blog.util.ResultUtil;
 import me.zhyd.hunter.config.platform.Platform;
 import me.zhyd.hunter.enums.ExitWayEnum;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.authz.annotation.RequiresUser;
+import org.apache.shiro.subject.Subject;
+import org.apache.shiro.web.util.SavedRequest;
+import org.apache.shiro.web.util.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,11 +52,17 @@ public class RenderController {
     private ZydWebsocketServer websocketServer;
     @Autowired
     private BlogHunterConfigProvider blogHunterConfigProvider;
+    @Autowired
+    private SysUserService userService;
 
     @RequiresAuthentication
     @BussinessLog("进入首页")
     @GetMapping(value = {""})
-    public ModelAndView home() {
+    public ModelAndView home(Model model) {
+        //获取当前的Subject
+        Long userId = (Long) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.getByPrimaryKey(userId);
+        model.addAttribute("user", user);
         return ResultUtil.view("index");
     }
 
@@ -93,6 +109,25 @@ public class RenderController {
             throw new ZhydException("不支持的编辑器类型");
         }
         return ResultUtil.view("article/publish-" + type);
+    }
+
+    @BussinessLog(value = "进入发表文章页[{1}]")
+    @GetMapping("/article/publishNew/{userId}")
+    public ModelAndView publishNew(@PathVariable("userId") String userId) throws Exception {
+        User user = userService.getByPrimaryKey(Long.valueOf(userId));
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), PasswordUtil.decrypt(user.getPassword(),user.getUsername()), true);
+        //获取当前的Subject
+        Subject currentUser = SecurityUtils.getSubject();
+        try {
+            // 在调用了login方法后,SecurityManager会收到AuthenticationToken,并将其发送给已配置的Realm执行必须的认证检查
+            // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
+            // 所以这一步在调用login(token)方法时,它会走到xxRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
+            currentUser.login(token);
+
+        } catch (Exception e) {
+            token.clear();
+        }
+        return ResultUtil.view("article/publish-we" );
     }
 
     @RequiresPermissions("article:publish")

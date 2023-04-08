@@ -22,6 +22,9 @@ public class SessionUtil {
         return null != SessionUtil.getUser();
     }
 
+    public static boolean isLogin1() {
+        return null != SessionUtil.getUser1();
+    }
     /**
      * 获取session中的用户信息
      *
@@ -29,6 +32,10 @@ public class SessionUtil {
      */
     public static User getUser() {
         return (User) RequestHolder.getSession(SessionConst.ADMIN_USER_SESSION_KEY);
+    }
+
+    public static User getUser1() {
+        return (User) RequestHolder.getSession(SessionConst.USER_SESSION_KEY);
     }
 
     /**

@@ -308,7 +308,25 @@ public class BizArticleServiceImpl implements BizArticleService {
             if (!StringUtils.isEmpty(bizArticle.getContent())) {
                 Set<String> set = sysSensitiveWordsService.sensitiveWordFiltering(bizArticle.getContent());
                 if (!CollectionUtils.isEmpty(set)) {
-                    throw new ZhydArticleException("包含敏感词，请修改！" + set.toString());
+                    throw new ZhydArticleException("内容中包含敏感词，请修改！" + set.toString());
+                }
+            }
+            if (!StringUtils.isEmpty(bizArticle.getTitle())) {
+                Set<String> set = sysSensitiveWordsService.sensitiveWordFiltering(bizArticle.getTitle());
+                if (!CollectionUtils.isEmpty(set)) {
+                    throw new ZhydArticleException("标题中包含敏感词，请修改！" + set.toString());
+                }
+            }
+            if (!StringUtils.isEmpty(bizArticle.getDescription())) {
+                Set<String> set = sysSensitiveWordsService.sensitiveWordFiltering(bizArticle.getDescription());
+                if (!CollectionUtils.isEmpty(set)) {
+                    throw new ZhydArticleException("摘要中包含敏感词，请修改！" + set.toString());
+                }
+            }
+            if (!StringUtils.isEmpty(bizArticle.getKeywords())) {
+                Set<String> set = sysSensitiveWordsService.sensitiveWordFiltering(bizArticle.getKeywords());
+                if (!CollectionUtils.isEmpty(set)) {
+                    throw new ZhydArticleException("关键字中包含敏感词，请修改！" + set.toString());
                 }
             }
         }

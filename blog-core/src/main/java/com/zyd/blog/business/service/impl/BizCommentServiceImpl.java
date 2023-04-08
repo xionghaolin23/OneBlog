@@ -161,7 +161,7 @@ public class BizCommentServiceImpl implements BizCommentService {
         this.filterContent(comment);
 
         // 已登录且非匿名，使用当前登录用户的信息评论
-        if (SessionUtil.isLogin()) {
+        if (SessionUtil.isLogin1()) {
             this.setCurrentLoginUserInfo(comment);
         } else {
             this.setCurrentAnonymousUserInfo(comment);
@@ -245,7 +245,7 @@ public class BizCommentServiceImpl implements BizCommentService {
      * @param comment
      */
     private void setCurrentLoginUserInfo(Comment comment) {
-        User loginUser = SessionUtil.getUser();
+        User loginUser = SessionUtil.getUser1();
         comment.setNickname(HtmlUtil.html2Text(loginUser.getNickname()));
         comment.setQq(HtmlUtil.html2Text(loginUser.getQq()));
         comment.setAvatar(HtmlUtil.html2Text(loginUser.getAvatar()));

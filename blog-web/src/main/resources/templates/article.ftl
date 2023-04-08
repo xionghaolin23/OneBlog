@@ -83,18 +83,18 @@
                             </div>
                             <div class="share-sd">
                                 <span class="share-s"><a onclick=PaymentUtils.show(${article.userId}); id="share-s" title="关注作者">关注作者</a></span>
-                                <div id="share" style="display: none">
-                                    <div class="social-share" data-initialized="true">
-                                        <a href="#" class="social-share-icon icon-twitter"></a>
-                                        <a href="#" class="social-share-icon icon-google"></a>
-                                        <a href="#" class="social-share-icon icon-facebook"></a>
-                                        <a href="#" class="social-share-icon icon-douban"></a>
-                                        <a href="#" class="social-share-icon icon-qzone"></a>
-                                        <a href="#" class="social-share-icon icon-wechat"></a>
-                                        <a href="#" class="social-share-icon icon-qq"></a>
-                                        <a href="#" class="social-share-icon icon-weibo"></a>
-                                    </div>
-                                </div>
+<#--                                <div id="share" style="display: none">-->
+<#--                                    <div class="social-share" data-initialized="true">-->
+<#--                                        <a href="#" class="social-share-icon icon-twitter"></a>-->
+<#--                                        <a href="#" class="social-share-icon icon-google"></a>-->
+<#--                                        <a href="#" class="social-share-icon icon-facebook"></a>-->
+<#--                                        <a href="#" class="social-share-icon icon-douban"></a>-->
+<#--                                        <a href="#" class="social-share-icon icon-qzone"></a>-->
+<#--                                        <a href="#" class="social-share-icon icon-wechat"></a>-->
+<#--                                        <a href="#" class="social-share-icon icon-qq"></a>-->
+<#--                                        <a href="#" class="social-share-icon icon-weibo"></a>-->
+<#--                                    </div>-->
+<#--                                </div>-->
                             </div>
                             <div class="clear"></div>
                         </div>
@@ -122,7 +122,7 @@
                         <li>
                             <strong>版权声明：</strong>
                             <#if article.original?string('true','false') == 'true'>
-                            本文由<a href="${config.siteUrl}" target="_blank" data-original-title="${config.siteName}" data-toggle="tooltip" data-placement="bottom"><strong>${config.authorName}</strong></a>原创发布，转载请遵循《<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)</a>》许可协议授权
+                            本文由<a href="${config.siteUrl}" target="_blank" data-original-title="${author}" data-toggle="tooltip" data-placement="bottom"><strong>${author}</strong></a>原创发布，转载请遵循《<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow">署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0)</a>》许可协议授权
                             <#else>
                             本文为互联网转载文章，出处已在文章中说明(部分除外)。如果侵权，请<a target="_blank" href="mailto:${config.authorEmail}" title="点击给我发邮件" data-toggle="tooltip" data-placement="bottom"><strong>联系本站长</strong></a>删除，谢谢。
                             </#if>

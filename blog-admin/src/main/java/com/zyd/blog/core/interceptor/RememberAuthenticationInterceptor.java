@@ -35,6 +35,10 @@ public class RememberAuthenticationInterceptor implements HandlerInterceptor {
         if (session.getAttribute(SessionConst.ADMIN_USER_SESSION_KEY) != null) {
             return true;
         }
+        String uri = request.getRequestURI();
+        if(uri.contains("/article/publishNew/")){
+            return true;
+        }
         if(!subject.isRemembered()) {
             log.warn("未设置“记住我”,跳转到登录页...");
             response.sendRedirect(request.getContextPath() + "/passport/login");

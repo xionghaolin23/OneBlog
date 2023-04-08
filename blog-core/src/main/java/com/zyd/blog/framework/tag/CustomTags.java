@@ -96,7 +96,11 @@ public class CustomTags extends BaseTag {
         Map<String, Object> p = new HashMap<>(2);
         p.put("type", "menu");
         p.put("userId", userId);
-        return resourcesService.listUserResources(p);
+        if(user!=null && UserTypeEnum.USER.name().equals(user.getUserType())){
+            return resourcesService.listUserResources(p).get(0);
+        }else{
+            return resourcesService.listUserResources(p);
+        }
     }
 
     public Object random(Map params) {

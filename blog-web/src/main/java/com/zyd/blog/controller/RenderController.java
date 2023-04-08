@@ -6,13 +6,12 @@ import com.zyd.blog.business.entity.Article;
 import com.zyd.blog.business.entity.User;
 import com.zyd.blog.business.enums.ArticleStatusEnum;
 import com.zyd.blog.business.enums.PlatformEnum;
-import com.zyd.blog.business.service.BizArticleArchivesService;
-import com.zyd.blog.business.service.BizArticleService;
-import com.zyd.blog.business.service.SysLinkService;
-import com.zyd.blog.business.service.SysUpdateRecordeService;
+import com.zyd.blog.business.service.*;
 import com.zyd.blog.business.vo.ArticleConditionVO;
+import com.zyd.blog.persistence.mapper.SysUserMapper;
 import com.zyd.blog.util.ResultUtil;
 import com.zyd.blog.util.SessionUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +44,9 @@ public class RenderController {
     private SysLinkService sysLinkService;
     @Autowired
     private SysUpdateRecordeService updateRecordeService;
+
+    @Autowired
+    private SysUserService userService;
 
     /**
      * 加载首页的数据
@@ -196,12 +198,20 @@ public class RenderController {
                 article.setRequiredAuth(false);
             }
         }
+        long userId = article.getUserId();
+        User user = userService.getByPrimaryKey(userId);
+
         model.addAttribute("article", article);
         // 上一篇下一篇
         model.addAttribute("other", bizArticleService.getPrevAndNextArticles(article.getCreateTime()));
         // 相关文章
         model.addAttribute("relatedList", bizArticleService.listRelatedArticle(SIDEBAR_ARTICLE_SIZE, article));
         model.addAttribute("articleDetail", true);
+        if(user == null){
+            model.addAttribute("author", "系统管理员");
+        }else{
+            model.addAttribute("author", StringUtils.isBlank(user.getNickname())?user.getUsername():user.getNickname());
+        }
         return ResultUtil.view("article");
     }
 

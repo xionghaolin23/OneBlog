@@ -11,14 +11,12 @@ import com.zyd.blog.framework.object.PageResult;
 import com.zyd.blog.framework.object.ResponseVO;
 import com.zyd.blog.util.PasswordUtil;
 import com.zyd.blog.util.ResultUtil;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 用户管理
@@ -109,6 +107,16 @@ public class RestUserController {
             return ResultUtil.error("用户修改失败！");
         }
         return ResultUtil.success(ResponseStatus.SUCCESS);
+    }
+
+
+    @GetMapping("/getUser")
+    @BussinessLog("获取用户详情")
+    public ResponseVO get() {
+        //获取当前的Subject
+        Long userId = (Long) SecurityUtils.getSubject().getPrincipal();
+        User user = userService.getByPrimaryKey(userId);
+        return ResultUtil.success(null, user);
     }
 
 }

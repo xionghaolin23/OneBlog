@@ -16,6 +16,7 @@
                 <div class="blog-body expansion">
                     <div class="alert alert-default alert-dismissible" role="alert" style="padding: 0;">
                         <ul >
+                            <li style="margin-bottom: 20px">我的关注列表</li>
                              <#list followUserList as item>
                                 <li><i class="fa fa-lightbulb-o fa-fw"></i> <a href="/follow/followUserList">${item.nickname}</a> </li>
                              </#list>

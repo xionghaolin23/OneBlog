@@ -3,6 +3,7 @@ package com.zyd.blog.business.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zyd.blog.business.entity.User;
+import com.zyd.blog.business.entity.UserInfo;
 import com.zyd.blog.business.entity.UserPwd;
 import com.zyd.blog.business.enums.UserNotificationEnum;
 import com.zyd.blog.business.enums.UserPrivacyEnum;
@@ -207,6 +208,15 @@ public class SysUserServiceImpl implements SysUserService {
         user.setPassword(userPwd.getNewPassword());
 
         return this.updateSelective(user);
+    }
+
+    @Override
+    public boolean updateInfo(UserInfo userInfo) throws Exception {
+        User user = this.getByPrimaryKey(userInfo.getId());
+        user.setMobile(userInfo.getMobile());
+        user.setEmail(userInfo.getEmail());
+        user.setNickname(userInfo.getNickname());
+        return sysUserMapper.updateByPrimaryKeySelective(user.getSysUser()) >0;
     }
 
     @Override

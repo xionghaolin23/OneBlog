@@ -3,6 +3,7 @@ package com.zyd.blog.business.service;
 
 import com.github.pagehelper.PageInfo;
 import com.zyd.blog.business.entity.User;
+import com.zyd.blog.business.entity.UserInfo;
 import com.zyd.blog.business.entity.UserPwd;
 import com.zyd.blog.business.vo.UserConditionVO;
 import com.zyd.blog.framework.object.AbstractService;
@@ -59,6 +60,14 @@ public interface SysUserService extends AbstractService<User, Long> {
      * @return
      */
     boolean updatePwd(UserPwd userPwd) throws Exception;
+
+    /**
+     * 修改用户信息
+     *
+     * @param userInfo
+     * @return
+     */
+    boolean updateInfo(UserInfo userInfo) throws Exception;
 
 
     /**

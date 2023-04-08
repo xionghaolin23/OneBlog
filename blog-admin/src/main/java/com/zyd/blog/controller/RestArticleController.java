@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.zyd.blog.business.annotation.BussinessLog;
 import com.zyd.blog.business.entity.Article;
+import com.zyd.blog.business.entity.User;
 import com.zyd.blog.business.enums.BaiduPushTypeEnum;
 import com.zyd.blog.business.enums.ConfigKeyEnum;
 import com.zyd.blog.business.enums.ResponseStatus;
 import com.zyd.blog.business.service.BizArticleService;
 import com.zyd.blog.business.service.SysConfigService;
+import com.zyd.blog.business.service.SysUserService;
 import com.zyd.blog.business.util.BaiduPushUtil;
 import com.zyd.blog.business.vo.ArticleConditionVO;
 import com.zyd.blog.framework.object.PageResult;
@@ -16,9 +18,11 @@ import com.zyd.blog.framework.object.ResponseVO;
 import com.zyd.blog.util.ResultUtil;
 import com.zyd.blog.util.UrlBuildUtil;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,9 +43,15 @@ public class RestArticleController {
     @Autowired
     private SysConfigService configService;
 
+    @Autowired
+    private SysUserService userService;
+
     @RequiresPermissions("articles")
     @PostMapping("/list")
-    public PageResult list(ArticleConditionVO vo) {
+    public PageResult list(ArticleConditionVO vo, Model model) {
+//        Long userId = (Long) SecurityUtils.getSubject().getPrincipal();
+//        User user = userService.getByPrimaryKey(userId);
+//        model.addAttribute("user", user);
         PageInfo<Article> pageInfo = articleService.findPageBreakByCondition2(vo);
         return ResultUtil.tablePage(pageInfo);
     }
@@ -74,7 +84,7 @@ public class RestArticleController {
         return ResultUtil.success(ResponseStatus.SUCCESS);
     }
 
-    @RequiresPermissions(value = {"article:top", "article:recommend"}, logical = Logical.OR)
+    @RequiresPermissions(value = {"article:top", "article:recommend","article:comment"}, logical = Logical.OR)
     @PostMapping("/update/{type}")
     @BussinessLog("修改文章[{2}]的状态[{1}]")
     public ResponseVO update(@PathVariable("type") String type, Long id) {

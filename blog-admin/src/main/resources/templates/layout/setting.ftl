@@ -13,6 +13,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li><a data-toggle="modal" title="修改密码" data-target="#updPasswordModal">修改密码</a></li>
+                        <li><a data-toggle="modal" title="个人信息" data-target="#updInfo">个人信息</a></li>
                         <@shiro.hasRole name="role:root">
                         <li>
 <#--                            <a href="/config">-->
@@ -118,4 +119,54 @@
             </div>
         </div>
     </div>
+
+
+    <div class="modal fade" id="updInfo" tabindex="-1" role="dialog" aria-labelledby="updInfo2">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="updInfo2">修改信息</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" class="form-horizontal form-label-left" role="form" id="updInfoForm">
+                        <input type="hidden" name="id" value="<#if user??>${user.id?c}</#if>">
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-3" for="nickname">昵称<span
+                                        class="required">*</span></label>
+                            <div class="col-sm-7 col-md-7 col-xs-7">
+                                <input class="form-control" id="nickname" name="nickname" required="required"
+                                       type="text" minlength="6" maxlength="15">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label for="mobile" class="control-label col-md-3 col-sm-3 col-xs-3">手机号码 <span
+                                        class="required">*</span></label>
+                            <div class="col-sm-7 col-md-7 col-xs-7">
+                                <input id="mobile" type="text" name="mobile" data-validate-length="5,20"
+                                       class="form-control" required="required" minlength="6" maxlength="15">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label for="email" class="control-label col-md-3 col-sm-3 col-xs-3">邮箱 <span
+                                        class="required">*</span></label>
+                            <div class="col-sm-7 col-md-7 col-xs-7">
+                                <input id="email" type="text" name="email"
+                                       data-validate-linked="email" class="form-control" required="required"
+                                       minlength="6" maxlength="15">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"> 关闭</i>
+                    </button>
+                    <button type="button" class="btn btn-primary" id="updInfoBtn">修改信息</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </@shiro.user>

@@ -2,9 +2,12 @@
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
         <ul class="nav side-menu">
-            <@shiro.user>
+            <span id="showIndex">
                 <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
-            </@shiro.user>
+            </span>
+            <#-- <@shiro.user>
+                 <li><a href="/"><i class="fa fa-home"></i>首页</a></li>
+             </@shiro.user>-->
             <@zhydTag method="menus" userId="${user.id}">
                 <#if menus?? && menus?size gt 0>
                     <#list menus as item>

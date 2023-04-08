@@ -162,13 +162,14 @@ var PaymentUtils = window.payment || {
             success: function (json) {
                 $.alert.ajaxSuccess(json);
                 if (json.status === 200) {
-                    $this.effectBubble({
-                        y: -80,
-                        className: 'thumb-bubble',
-                        fontSize: 1,
-                        content: '<i class="fa fa-smile-o"></i>+1'
-                    });
-                    $count.text(parseInt($count.text()) + 1);
+                alert("关注成功")
+//                    $this.effectBubble({
+//                        y: -80,
+//                        className: 'thumb-bubble',
+//                        fontSize: 1,
+//                        content: '<i class="fa fa-smile-o"></i>+1'
+//                    });
+//                    $count.text(parseInt($count.text()) + 1);
                 }
                 $.bubble.init();
             },

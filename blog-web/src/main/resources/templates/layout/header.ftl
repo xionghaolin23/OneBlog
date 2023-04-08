@@ -76,7 +76,7 @@
                 </@zhydTag>
                 <li><a href="/guestbook" class="menu_a"><i class="fa fa-comments-o"></i>留言板</a></li>
                 <#if user??>
-                    <li><a href="/article/publish-we" class="menu_a"><i class="fa fa-comments-o"></i>发布博客</a></li>
+                    <li><a href="http://localhost:8085/article/publishNew/<#if user??>${user.id?c}</#if>" target="_blank" class="menu_a"><i class="fa fa-comments-o"></i>发布博客</a></li>
                     <li><a href="/follow/followUser" class="menu_a"><i class="fa fa-comments-o"></i>我的关注</a></li>
                 </#if>
 

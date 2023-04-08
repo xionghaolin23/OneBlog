@@ -638,6 +638,27 @@ $(document).ready(function () {
             });
         }
     });
+
+        $("#updInfoBtn").click(function () {
+            var $form = $("#updInfoForm");
+            if (validator.checkAll($form)) {
+                $form.ajaxSubmit({
+                    type: "POST",
+                    url: '/passport/updateInfo',
+                    success: function (json) {
+                        $.alert.ajaxSuccess(json);
+                        if (json.status == 200) {
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 2000);
+                        }
+
+                    },
+                    error: $.alert.ajaxError
+                });
+            }
+        });
+
     zhyd.combox.init(zhyd.tagsInput.init);
     zhyd.mask.init();
 

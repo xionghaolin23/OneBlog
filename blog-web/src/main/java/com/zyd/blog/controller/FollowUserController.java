@@ -68,7 +68,6 @@ public class FollowUserController {
 
 
 
-    @RequiresPermissions("user:add")
     @PostMapping(value = "/add/{followUserId}")
     @BussinessLog("添加关注的人")
     @ResponseBody

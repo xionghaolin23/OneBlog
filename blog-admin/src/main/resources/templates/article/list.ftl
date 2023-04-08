@@ -130,7 +130,10 @@
                         var checked = code ? 'checked' : '';
                         return '<input type="checkbox" name="recommended" class="js-switch btn-recommended" data-id="' + row.id + '" data-type="recommend" ' + checked + '>';
                     }
-                }, {
+                },
+
+<@shiro.hasPermission name="article:push">
+                {
                     field: 'top',
                     title: '置顶',
                     width: '50px',
@@ -139,7 +142,9 @@
                         var checked = code ? 'checked' : '';
                         return '<input type="checkbox" name="top" class="js-switch btn-top" data-id="' + row.id + '" data-type="top" ' + checked + '>';
                     }
-                }, {
+                }
+                </@shiro.hasPermission>
+                , {
                     field: 'lookCount',
                     title: '浏览',
                     width: '50px',

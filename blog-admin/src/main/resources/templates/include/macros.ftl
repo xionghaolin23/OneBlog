@@ -27,10 +27,33 @@
         <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput-typeahead.css" rel="stylesheet">
         <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
     </#if>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <link href="/assets/css/bootstrap-treetable.css" rel="stylesheet" type="text/css" />
     <link href="/assets/css/zhyd.core.css" rel="stylesheet">
     <#nested>
 </head>
+
+<script>
+$(function(){
+   $.ajax({url:"/user/getUser/",success:function(result){
+        if(result.status==200){
+            if(result.data.userType=='USER'){
+                $("#hello_msg").html('<h2>尊敬的用户</h2>');
+                $("#hide").hide();
+                $("#showIndex").hide();
+                $("#show").show();
+            }else{
+                 $("#hello_msg").html('<h2>尊敬的管理员</h2>');
+                 ("#hide").show();
+                   $("#showIndex").show();
+                  $("#show").hide();
+            }
+
+        }
+
+    }});
+    });
+</script>
 <body class="nav-md">
 <div class="container body">
     <div class="main_container">
@@ -48,7 +71,12 @@
                     </div>
                     <div class="profile_info">
                         <span id="hello_msg">&nbsp;</span>
-                        <h2>尊敬的管理员</h2>
+
+                              <h2></h2>
+
+
+
+
                     </div>
                 </div>
                 </@shiro.user>
@@ -283,17 +311,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel2">关于OneBlog - 一个简洁美观、功能强大并且自适应的Java博客</h4>
+                <h4 class="modal-title" id="myModalLabel2">关于Blog - 一个简洁美观、功能强大并且自适应的Java博客</h4>
             </div>
             <div class="modal-body notice-box">
                 <div class="row">
                     <div class="col col-lg-4 col-sm-4 col-md-4 col-xs-4">
-                        <fieldset>
-                            <legend>关注公众号</legend>
-                            <a href="/assets/images/wechat_account_500x500.jpg" class="showImage" title="关注公众号：码一码" rel="external nofollow" style="display: block;text-align: center">
-                                <img src="/assets/images/wechat_account_500x500.jpg" class="img-rounded" alt="关注公众号：码一码" width="300">
-                            </a>
-                        </fieldset>
+
                     </div>
                     <div class="col col-lg-4 col-sm-4 col-md-4 col-xs-4">
 
@@ -301,22 +324,12 @@
                     <div class="col col-lg-4 col-sm-4 col-md-4 col-xs-4">
                         <fieldset>
                             <legend>支持的功能</legend>
-                            <ul>
-                                <li><span><span><strong>多种编辑器</strong>：支持wangEditor和Markdown两种富文本编辑器，可以自行选择</span></span></li>
-                                <li><span><span><strong>自动申请友情链接</strong>：在线申请友情链接，无需站长手动配置，只需申请方添加完站长的连接后自行申请即可</span></span></li>
-                                <li><span><span><strong>百度推送</strong>：支持百度推送功能，加速百度搜索引擎收录博文</span></span></li>
-                                <li><span><span><strong>评论系统</strong>：自研的评论系统，支持显示用户地址、浏览器和os信息，后台可审核评论、开启匿名评论、回复和邮件通知评论</span></span></li>
-                                <li><span><span><strong>权限管理</strong>：后台配备完善的权限管理</span></span></li>
-                                <li><span><span><strong>SEO</strong>：自带robots、sitemap等seo模板，实现自动生成robots和sitemap</span></span></li>
-                                <li><span><span><strong>系统配置支持快速配置</strong>：可通过后台手动修改诸如域名信息、SEO优化、赞赏码、七牛云以及更新维护通知等</span></span></li>
-                                <li><span><span><strong><i class="fa fa-fire fa-fw red"></i>多种文件存储</strong>：集成七牛云、阿里云OSS，实现文件云存储，同时支持本地文件存储</span></span></li>
-                            </ul>
+
                         </fieldset></div>
                 </div>
 
             </div>
             <div class="modal-footer">
-                <span class="pull-left">tips: 如不想显示该弹窗，可在 <code>index.ftl</code> 中搜索 <code>aboutOneBlog</code> 后删掉相关代码</span>
                 <button type="button" class="btn btn-danger" data-dismiss="modal" id="neverShowNoticeModal"><i class="fa fa-close"> 不再显示</i></button>
                 <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-close"> 关闭</i></button>
             </div>

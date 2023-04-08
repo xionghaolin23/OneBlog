@@ -1,7 +1,10 @@
 package com.zyd.blog.controller;
 
 import com.zyd.blog.business.annotation.BussinessLog;
+import com.zyd.blog.business.entity.User;
+import com.zyd.blog.business.entity.UserInfo;
 import com.zyd.blog.business.entity.UserPwd;
+import com.zyd.blog.business.enums.UserTypeEnum;
 import com.zyd.blog.business.service.SysUserService;
 import com.zyd.blog.framework.holder.RequestHolder;
 import com.zyd.blog.framework.object.ResponseVO;
@@ -73,12 +76,17 @@ public class PassportController {
             // 每个Realm都能在必要时对提交的AuthenticationTokens作出反应
             // 所以这一步在调用login(token)方法时,它会走到xxRealm.doGetAuthenticationInfo()方法中,具体验证方式详见此方法
             currentUser.login(token);
+            Long userId = (Long)SecurityUtils.getSubject().getPrincipal();
+            User user = userService.getByPrimaryKey(userId);
             SavedRequest savedRequest = WebUtils.getSavedRequest(RequestHolder.getRequest());
             String historyUrl = null;
             if(null != savedRequest) {
                 if(!savedRequest.getMethod().equals("POST")) {
                     historyUrl = savedRequest.getRequestUrl();
                 }
+            }
+            if(UserTypeEnum.USER.name().equals(user.getUserType())){
+                historyUrl="/articles";
             }
             return ResultUtil.success(null, historyUrl);
         } catch (Exception e) {
@@ -100,9 +108,31 @@ public class PassportController {
         if (bindingResult.hasErrors()) {
             return ResultUtil.error(bindingResult.getFieldError().getDefaultMessage());
         }
+        if(org.apache.commons.lang3.StringUtils.isBlank(userPwd.getId().toString())){
+            Long userId = (Long)SecurityUtils.getSubject().getPrincipal();
+            userPwd.setId(userId);
+        }
         boolean result = userService.updatePwd(userPwd);
         SessionUtil.removeAllSession();
         return ResultUtil.success(result ? "密码已修改成功，请重新登录" : "密码修改失败");
+    }
+
+    /**
+     * 修改密码
+     *
+     * @return
+     */
+    @BussinessLog("修改个人信息")
+    @PostMapping("/updateInfo")
+    @ResponseBody
+    public ResponseVO updateInfo(@Validated UserInfo userInfo, BindingResult bindingResult) throws Exception {
+        if (bindingResult.hasErrors()) {
+            return ResultUtil.error(bindingResult.getFieldError().getDefaultMessage());
+        }
+        Long userId = (Long)SecurityUtils.getSubject().getPrincipal();
+        userInfo.setId(userId);
+        boolean result = userService.updateInfo(userInfo);
+        return ResultUtil.success(result ? "修改个人信息成功" : "修改个人信息失败");
     }
 
     /**

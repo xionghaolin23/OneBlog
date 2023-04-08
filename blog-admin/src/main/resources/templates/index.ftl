@@ -68,208 +68,215 @@
         }
     </style>
 </@header>
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12 top_tiles">
-        <#-- 文章 -->
-        <a href="/articles" class="statistics-panel">
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-article" data-key="articleCount">
-                <div class="tile-stats statistics-box">
-                    <div class="icon"><i style="color: #5470c6;" class="fa fa-envira"></i></div>
-                    <div class="count" style="color: #9a60b4"></div>
-                    <h4>文章</h4>
+<div id="hide">
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12 top_tiles">
+            <#-- 文章 -->
+            <a href="/articles" class="statistics-panel">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-article" data-key="articleCount">
+                    <div class="tile-stats statistics-box">
+                        <div class="icon"><i style="color: #5470c6;" class="fa fa-envira"></i></div>
+                        <div class="count" style="color: #9a60b4"></div>
+                        <h4>文章</h4>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <#-- 标签 -->
-        <a href="/article/tags" class="statistics-panel">
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-tag" data-key="tagCount">
-                <div class="tile-stats statistics-box">
-                    <div class="icon"><i style="color: #91cc75;" class="fa fa-tags"></i></div>
-                    <div class="count" style="color: #ea7ccc"></div>
-                    <h4>标签</h4>
+            </a>
+            <#-- 标签 -->
+            <a href="/article/tags" class="statistics-panel">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-tag" data-key="tagCount">
+                    <div class="tile-stats statistics-box">
+                        <div class="icon"><i style="color: #91cc75;" class="fa fa-tags"></i></div>
+                        <div class="count" style="color: #ea7ccc"></div>
+                        <h4>标签</h4>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <#-- 分类 -->
-        <a href="/article/types" class="statistics-panel">
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-type" data-key="typeCount">
-                <div class="tile-stats statistics-box">
-                    <div class="icon"><i style="color: #fac858;" class="fa fa-th"></i></div>
-                    <div class="count" style="color: #60c0dd"></div>
-                    <h4>分类</h4>
+            </a>
+            <#-- 分类 -->
+            <a href="/article/types" class="statistics-panel">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-type" data-key="typeCount">
+                    <div class="tile-stats statistics-box">
+                        <div class="icon"><i style="color: #fac858;" class="fa fa-th"></i></div>
+                        <div class="count" style="color: #60c0dd"></div>
+                        <h4>分类</h4>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <#-- 评论 -->
-        <a href="/comments" class="statistics-panel">
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-comment" data-key="commentCount">
-                <div class="tile-stats statistics-box">
-                    <div class="icon"><i style="color: #ee6666;" class="fa fa-comments-o"></i></div>
-                    <div class="count" style="color: #d7504b"></div>
-                    <h4>留言数</h4>
+            </a>
+            <#-- 评论 -->
+            <a href="/comments" class="statistics-panel">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-comment" data-key="commentCount">
+                    <div class="tile-stats statistics-box">
+                        <div class="icon"><i style="color: #ee6666;" class="fa fa-comments-o"></i></div>
+                        <div class="count" style="color: #d7504b"></div>
+                        <h4>留言数</h4>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
 
-        <#--总访问 量-->
-        <a id="fangwen" href="#" class="statistics-panel">
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-lookCount" data-key="lookCount">
-                <#--隐藏域，放进去值，方便运算-->
-                <input type="hidden" id="fangwen_inp" value="">
-                <div class="tile-stats statistics-box">
-                    <div class="icon"><i style="color: #73c0de;" class="fa fa-bar-chart"></i></div>
-                    <div class="count" id="l_count_mxx" style="color: #c6e579;"></div>
-                    <h4>访问量</h4>
+            <#--总访问 量-->
+            <a id="fangwen" href="#" class="statistics-panel">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-lookCount" data-key="lookCount">
+                    <#--隐藏域，放进去值，方便运算-->
+                    <input type="hidden" id="fangwen_inp" value="">
+                    <div class="tile-stats statistics-box">
+                        <div class="icon"><i style="color: #73c0de;" class="fa fa-bar-chart"></i></div>
+                        <div class="count" id="l_count_mxx" style="color: #c6e579;"></div>
+                        <h4>访问量</h4>
+                    </div>
+                </div>
+            </a>
+            <#--总赞数-->
+            <a href="/articles" class="statistics-panel">
+                <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-zanCount" data-key="zanCount">
+                    <div class="tile-stats statistics-box">
+                        <div class="icon"><i style="color: #FF6666;" class="fa fa-thumbs-o-up"></i></div>
+                        <div class="count"></div>
+                        <h4>总赞量</h4>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <#-- 分类文章数统计 -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel fixed_height_320 statistics-box">
+                <div class="x_title">
+                    <h2>分类文章数统计</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div id="echart_type" style="height: 250px;"></div>
                 </div>
             </div>
-        </a>
-        <#--总赞数-->
-        <a href="/articles" class="statistics-panel">
-            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12 statistics-zanCount" data-key="zanCount">
-                <div class="tile-stats statistics-box">
-                    <div class="icon"><i style="color: #FF6666;" class="fa fa-thumbs-o-up"></i></div>
-                    <div class="count"></div>
-                    <h4>总赞量</h4>
+        </div>
+        <#-- 文章访问TOP.10 -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel fixed_height_320 statistics-box">
+                <div class="x_title">
+                    <h2>文章访问TOP.10</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content" id="statistics-article-list">
+                    <ul class="list-unstyled">
+                        <@articleTag method="hotList" pageSize="10">
+                            <#if hotList?? && (hotList?size > 0)>
+                                <#list hotList as item>
+                                    <li class="title word-prase"><a href="${config.siteUrl}/article/${item.id?c}" title="${item.title}">${item.title}</a></li>
+                                    <li class="count"><span title="浏览人次：${item.lookCount?c}">${item.lookCount?c}</span></li>
+                                </#list>
+                            </#if>
+                        </@articleTag>
+                    </ul>
                 </div>
             </div>
-        </a>
+        </div>
+        <#-- 爬虫访问统计TOP.10 -->
+        <div class="col-md-4 col-sm-4 col-xs-12">
+            <div class="x_panel fixed_height_320 statistics-box">
+                <div class="x_title">
+                    <h2>爬虫访问统计TOP.10</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div id="echart_spider" style="height: 250px;"></div>
+                </div>
+            </div>
+        </div>
+
+        <#-- 近期文章 -->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel statistics-box">
+                <div class="x_title">
+                    <h2>近期文章 <small> </small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a href="/articles" target="_blank" title="查看更多"><i class="fa fa-ellipsis-h"></i></a></li>
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="table table-bordered recentArticles">
+                        <thead>
+                        <tr>
+                            <th class="title"><div class="word-prase">标题</div></th>
+                            <th>分类</th>
+                            <th>浏览数</th>
+                            <th>发布时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <@articleTag method="recentArticles" pageSize="5">
+                            <#if recentArticles?? && (recentArticles?size > 0)>
+                                <#list recentArticles as item>
+                                    <tr>
+                                        <th class="title"><div class="word-prase"><a href="${config.siteUrl}/article/${item.id?c}" title="${item.title}">${item.title}</a></div></th>
+                                        <td><a href="${config.siteUrl}/type/${item.type.id?c}" target="_blank">${item.type.name}</a></td>
+                                        <td>${item.lookCount?c}</td>
+                                        <td>${item.createTime?string('yyyy-MM-dd')}</td>
+                                    </tr>
+                                </#list>
+                            </#if>
+                        </@articleTag>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <#-- 近期评论 -->
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="x_panel statistics-box">
+                <div class="x_title">
+                    <h2>近期评论 <small> </small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a href="/comments" target="_blank" title="查看更多"><i class="fa fa-ellipsis-h"></i></a></li>
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <table class="table table-bordered recentComments">
+                        <thead>
+                        <tr>
+                            <th><div>发起人</div></th>
+                            <th class="content"><div class="word-prase">评论内容</div></th>
+                            <th class="source"><div class="word-prase">出处</div></th>
+                            <th>评论时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <@zhydTag method="recentComments" pageSize="5">
+                            <#if recentComments?? && (recentComments?size > 0)>
+                                <#list recentComments as item>
+                                    <tr>
+                                        <th class="title word-prase"><div><a href="${item.url}" target="_blank" rel="external nofollow">${item.nickname!}</a></div></th>
+                                        <td class="content"><div class="word-prase">${item.briefContent!}</div></td>
+                                        <td class="source"><div class="word-prase"><a href="${config.siteUrl}${item.sourceUrl}#comment-${item.id?c}" target="_blank" rel="external nofollow">${item.articleTitle!}</a></div></td>
+                                        <td>${item.createTime?string('yyyy-MM-dd')}</td>
+                                    </tr>
+                                </#list>
+                            </#if>
+                        </@zhydTag>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row">
-    <#-- 分类文章数统计 -->
-    <div class="col-md-4 col-sm-4 col-xs-12">
-        <div class="x_panel fixed_height_320 statistics-box">
-            <div class="x_title">
-                <h2>分类文章数统计</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div id="echart_type" style="height: 250px;"></div>
-            </div>
-        </div>
-    </div>
-    <#-- 文章访问TOP.10 -->
-    <div class="col-md-4 col-sm-4 col-xs-12">
-        <div class="x_panel fixed_height_320 statistics-box">
-            <div class="x_title">
-                <h2>文章访问TOP.10</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content" id="statistics-article-list">
-                <ul class="list-unstyled">
-                    <@articleTag method="hotList" pageSize="10">
-                        <#if hotList?? && (hotList?size > 0)>
-                            <#list hotList as item>
-                            <li class="title word-prase"><a href="${config.siteUrl}/article/${item.id?c}" title="${item.title}">${item.title}</a></li>
-                            <li class="count"><span title="浏览人次：${item.lookCount?c}">${item.lookCount?c}</span></li>
-                            </#list>
-                        </#if>
-                    </@articleTag>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <#-- 爬虫访问统计TOP.10 -->
-    <div class="col-md-4 col-sm-4 col-xs-12">
-        <div class="x_panel fixed_height_320 statistics-box">
-            <div class="x_title">
-                <h2>爬虫访问统计TOP.10</h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <div id="echart_spider" style="height: 250px;"></div>
-            </div>
-        </div>
-    </div>
 
-    <#-- 近期文章 -->
-    <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="x_panel statistics-box">
-            <div class="x_title">
-                <h2>近期文章 <small> </small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a href="/articles" target="_blank" title="查看更多"><i class="fa fa-ellipsis-h"></i></a></li>
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <table class="table table-bordered recentArticles">
-                    <thead>
-                    <tr>
-                        <th class="title"><div class="word-prase">标题</div></th>
-                        <th>分类</th>
-                        <th>浏览数</th>
-                        <th>发布时间</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <@articleTag method="recentArticles" pageSize="5">
-                        <#if recentArticles?? && (recentArticles?size > 0)>
-                            <#list recentArticles as item>
-                            <tr>
-                                <th class="title"><div class="word-prase"><a href="${config.siteUrl}/article/${item.id?c}" title="${item.title}">${item.title}</a></div></th>
-                                <td><a href="${config.siteUrl}/type/${item.type.id?c}" target="_blank">${item.type.name}</a></td>
-                                <td>${item.lookCount?c}</td>
-                                <td>${item.createTime?string('yyyy-MM-dd')}</td>
-                            </tr>
-                            </#list>
-                        </#if>
-                    </@articleTag>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <#-- 近期评论 -->
-    <div class="col-md-6 col-sm-6 col-xs-12">
-        <div class="x_panel statistics-box">
-            <div class="x_title">
-                <h2>近期评论 <small> </small></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li><a href="/comments" target="_blank" title="查看更多"><i class="fa fa-ellipsis-h"></i></a></li>
-                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
-                <table class="table table-bordered recentComments">
-                    <thead>
-                    <tr>
-                        <th><div>发起人</div></th>
-                        <th class="content"><div class="word-prase">评论内容</div></th>
-                        <th class="source"><div class="word-prase">出处</div></th>
-                        <th>评论时间</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <@zhydTag method="recentComments" pageSize="5">
-                        <#if recentComments?? && (recentComments?size > 0)>
-                            <#list recentComments as item>
-                            <tr>
-                                <th class="title word-prase"><div><a href="${item.url}" target="_blank" rel="external nofollow">${item.nickname!}</a></div></th>
-                                <td class="content"><div class="word-prase">${item.briefContent!}</div></td>
-                                <td class="source"><div class="word-prase"><a href="${config.siteUrl}${item.sourceUrl}#comment-${item.id?c}" target="_blank" rel="external nofollow">${item.articleTitle!}</a></div></td>
-                                <td>${item.createTime?string('yyyy-MM-dd')}</td>
-                            </tr>
-                            </#list>
-                        </#if>
-                    </@zhydTag>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+<div id="show" style="display: none">
+    <h2 style="text-align: center;margin-top: 100px">欢迎来到博客后台</h2>
 </div>
+
 </div>
 <#-- 网站首页的项目介绍内容 -->
 <#--<@aboutOneBlog></@aboutOneBlog>-->
